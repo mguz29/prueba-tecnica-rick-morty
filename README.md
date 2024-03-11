@@ -34,6 +34,182 @@ Este proyecto es una aplicación frontend desarrollada en TypeScript, React, Rea
 ## Instalación
 
 1. Clona el repositorio desde GitHub:
+
    ```bash
    git clone https://github.com/mguz29/prueba-tecnica-rick-morty.git
    ```
+
+2. Ingresa al directorio del proyecto
+
+   ```bash
+   cd prueba-tecnica-rick-morty
+   ```
+
+3. Instala las dependencias del proyecto usando el siguiente comando
+   ```bash
+   npm install
+   ```
+
+## Configuración
+
+    No se requieren configuraciones adicionales
+
+## Ejecución
+
+Para empezar a ejecutar la aplicacion localmente, utiliza el siguiente comando.
+
+    ```bash
+      npm run dev
+    ```
+
+## Estructura del proyecto
+
+El proyecto esta estructurado de la siguiente manera
+
+```bash
+src/
+│
+├── components/
+│   ├── Detail
+│   ├── List
+│   └── Search
+│
+│── icons/
+├   ├── arrowBack
+│   ├── filterIcon
+│   └── searchIcon
+│
+├── pages/
+│   ├── ErrorPages
+│   ├── HomePAges
+│   └── ...
+│
+│── services/
+├   ├── filters
+│   ├── getCharacters
+│   └── getDetailCharacters
+│
+│── store/
+├   ├── storeProvider
+│   ├── storeReducer
+└── App.tsx
+
+```
+
+- La carpeta components contiene los componentes reutilizables de la aplicación.
+- La carpeta icons contiene todos los iconos utilizados en la aplicación.
+- La carpeta pages contiene las páginas principales de la aplicación.
+- El archivo App.tsx es el punto de entrada de la aplicación.
+- La carpeta services contiene todos los archivos con funciones que nos permiten conectarnos y hacer peticiones a la API para obtener información.
+- La carpeta store contiene el provider que nos permite usar estados globales mediante el contexto, además de contener el reducer que nos permite manejar y modificar los estados.
+
+## Enrutamiento
+
+La aplicacion utiliza React router Dom en su version 6 para hacer la gestion de rutas
+
+```bash
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import ErrorPage from "./pages/errorPages/ErrorPages.tsx";
+import Detail from "./components/detail/DetailCharacter.tsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/character/:id",
+        element: <Detail />,
+      },
+    ],
+  },
+]);
+```
+
+## Estilos
+
+Los estilos de la aplicación están gestionados mediante Tailwind CSS en su version 3.4. Se utilizan clases de Tailwind CSS directamente en los componentes para aplicar estilos.
+
+```bash
+export default function List({ title, characters, filterActive }: props) {
+  return (
+    <div className="mt-8">
+      <div className="text-left mb-4">
+        {filterActive ? (
+          <div className="flex justify-between">
+            <span className="pl-5 text-base font-semibold text-blue-400">
+              {characters.length} {title}
+            </span>
+            <span>
+              <div>
+                <span className="mx-3 text-sm font-semibold text-secondary700 bg-secondary600 rounded-xl w-10 px-2 bg-opacity-20">
+                  1 Filter
+                </span>
+              </div>
+            </span>
+          </div>
+        ) : (
+          <span className="pl-5 text-xs font-semibold text-ColorCharactersSpecie">
+            {title} ({characters.length})
+          </span>
+        )}
+      </div>
+      <div>
+        {characters &&
+          characters.map((character) => {
+            return (
+              <div key={character.id}>
+                <ItemList
+                  id={character.id}
+                  image={character.image}
+                  name={character.name}
+                  species={character.species}
+                  favorite={character.favorite}
+                  gender={character.gender}
+                  status={character.status}
+                />
+              </div>
+            );
+          })}
+      </div>
+    </div>
+  )
+}
+```
+## API Rick and Morty:
+La aplicación utiliza la API de Rick and Morty para obtener información sobre los personajes. Se realizan solicitudes HTTP para obtener los datos necesarios.
+
+````js
+import { actionProps, types } from "../store/StoreReducer";
+export const getCharacters = 
+async (dispatch: React.Dispatch<actionProps>) => {
+  fetch("https://rickandmortyapi.com/api/character/")
+    .then((response) => response.json())
+    .then((data) =>
+      dispatch({
+        type: types.getCharacters,
+        payload: data.results.slice(0, 8),
+      })
+    )
+    .catch((error) => console.log(error));
+};
+`````
+
+Link documentacion api Rick and Morty
+- https://rickandmortyapi.com/documentation/
+
+
+## Creación del Proyecto:
+Este proyecto fue creado utilizando Vite, un entorno de desarrollo rápido para aplicaciones web modernas. Vite proporciona una configuración de desarrollo optimizada y es compatible con TypeScript, React y otras tecnologías modernas.
+
+Para crear un nuevo proyecto utilizando Vite, puedes utilizar el siguiente comando:
+
+```bash
+npm create vite@latest
+```
+Este comando generará la estructura inicial del proyecto utilizando React como plantilla. Luego puedes agregar las demás dependencias necesarias, como React Router DOM y Tailwind CSS, según sea necesario.
