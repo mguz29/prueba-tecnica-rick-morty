@@ -4,6 +4,24 @@
 
 Este proyecto es una aplicación frontend desarrollada en TypeScript, React, React Router DOM, Tailwind CSS y creado mediante Vite. Su propósito principal es permitir a los usuarios realizar búsquedas de personajes de la serie "Rick y Morty" utilizando la API Rick and Morty.
 
+## Searchbar
+
+- Nos permite buscar por genero, estado o especie
+
+![alt text](image.png)
+
+## Lista de personajes
+- Renderiza los personajes en forma de cartas, mostrandonos el nombre, imagen, y especie. Ademas de esto cada carta tiene la opcion de añadir ese personaje a favoritos
+
+  ![alt text](image-1.png)
+
+## Seccion de filtros
+- Se pueden combinar 2 opciones de filtros, para buscar favoritos, no favoritos, humanos o aliens. Ademas se añadio la opcion para hacer un ordenamiento de la A-z y viceversa, ademas un boton de reset que permite dejar todo sin filtros ni ordenamientos 
+  ![alt text](image-3.png)
+
+## Seccion detail
+- Nos enseña mas informacion acerca del personaje, desde esta seccion tambien podemos agregar o quitar de favoritos, para poder ver el detalle de un personaje es necesirio dar click sobre el nombre o imagen de las cartas.
+  ![alt text](image-4.png)
 ## Tecnologías Utilizadas
 
 ### TypeScript v5.2
@@ -181,13 +199,14 @@ export default function List({ title, characters, filterActive }: props) {
   )
 }
 ```
+
 ## API Rick and Morty:
+
 La aplicación utiliza la API de Rick and Morty para obtener información sobre los personajes. Se realizan solicitudes HTTP para obtener los datos necesarios.
 
-````js
+```js
 import { actionProps, types } from "../store/StoreReducer";
-export const getCharacters = 
-async (dispatch: React.Dispatch<actionProps>) => {
+export const getCharacters = async (dispatch: React.Dispatch<actionProps>) => {
   fetch("https://rickandmortyapi.com/api/character/")
     .then((response) => response.json())
     .then((data) =>
@@ -198,13 +217,14 @@ async (dispatch: React.Dispatch<actionProps>) => {
     )
     .catch((error) => console.log(error));
 };
-`````
+```
 
 Link documentacion api Rick and Morty
+
 - https://rickandmortyapi.com/documentation/
 
-
 ## Creación del Proyecto:
+
 Este proyecto fue creado utilizando Vite, un entorno de desarrollo rápido para aplicaciones web modernas. Vite proporciona una configuración de desarrollo optimizada y es compatible con TypeScript, React y otras tecnologías modernas.
 
 Para crear un nuevo proyecto utilizando Vite, puedes utilizar el siguiente comando:
@@ -212,4 +232,5 @@ Para crear un nuevo proyecto utilizando Vite, puedes utilizar el siguiente coman
 ```bash
 npm create vite@latest
 ```
+
 Este comando generará la estructura inicial del proyecto utilizando React como plantilla. Luego puedes agregar las demás dependencias necesarias, como React Router DOM y Tailwind CSS, según sea necesario.
