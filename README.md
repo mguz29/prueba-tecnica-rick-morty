@@ -8,20 +8,20 @@ Este proyecto es una aplicación frontend desarrollada en TypeScript, React, Rea
 
 - Nos permite buscar por genero, estado o especie
 
-![alt text](image.png)
+![alt text](/src/assets/image.png)
 
 ## Lista de personajes
 - Renderiza los personajes en forma de cartas, mostrandonos el nombre, imagen, y especie. Ademas de esto cada carta tiene la opcion de añadir ese personaje a favoritos
 
-  ![alt text](image-1.png)
+  ![alt text](/src/assets/image-1.png)
 
 ## Seccion de filtros
 - Se pueden combinar 2 opciones de filtros, para buscar favoritos, no favoritos, humanos o aliens. Ademas se añadio la opcion para hacer un ordenamiento de la A-z y viceversa, ademas un boton de reset que permite dejar todo sin filtros ni ordenamientos 
-  ![alt text](image-3.png)
+  ![alt text](/src/assets/image-3.png)
 
 ## Seccion detail
 - Nos enseña mas informacion acerca del personaje, desde esta seccion tambien podemos agregar o quitar de favoritos, para poder ver el detalle de un personaje es necesirio dar click sobre el nombre o imagen de las cartas.
-  ![alt text](image-4.png)
+  ![alt text](/src/assets/image-4.png)
 ## Tecnologías Utilizadas
 
 ### TypeScript v5.2
